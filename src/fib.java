@@ -1,5 +1,5 @@
-public class DAS {
-  public DAS() {
+public class fib {
+  public fib() {
   }
 
   public int[] fibonacci() {
@@ -36,7 +36,7 @@ public class DAS {
 
 
   public static void main(String[] args) {
-    DAS das = new DAS();
+    fib das = new fib();
     int[]result=das.fibArrUpto(20);
     int i=0;
     while(i<20){
