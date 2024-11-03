@@ -1,5 +1,9 @@
 package ds.LinkedList;
 
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
+
 public class LinkedList {
   // singly
   public int size = 0;
@@ -37,7 +41,6 @@ public class LinkedList {
   public void clear() {
     head = null;
     size = 0;
-    return; // straightforward
   }
 
   // Search and Retrieval
@@ -82,28 +85,61 @@ public class LinkedList {
     return temp.data;
   }
 
+  public Node getNode(int x) {
+    if (x >= size || x < 0) {
+      System.out.println("invalid indexes, return -1 as value");
+      return null;
+    }
+    int indexPtr = 0;
+    Node temp = head;
+
+    while (indexPtr != x) {
+      temp = temp.next;
+      indexPtr++;
+    }
+    System.out.println("The value at index " + x + " is: " + temp.data);
+    return temp;
+  }
+
   /**
-   * Precondition: data must be an int 
+   * Precondition: data must be an int
    * Postcondition: returns the first occurence of data at index x
+   * 
    * @param data data
    * @returnreturns the first occurence of data at index x
    */
-  public int indexOf(int data) { 
-    int indexPtr=0;
-    if(isEmpty()){
+  public int indexOf(int data) {
+    int indexPtr = 0;
+    if (isEmpty()) {
       System.out.println("List is empty");
       return -1;
     }
-    Node temp=head;
-    while(temp!=null){
-      if(temp.data==data){
+    Node temp = head;
+    while (temp != null) {
+      if (temp.data == data) {
         return indexPtr;
       }
       indexPtr++;
-      temp=temp.next;
+      temp = temp.next;
     }
     System.out.println("Data not found, return -1 as default");
     return -1;
+  }
+
+  public int lastIndexOf(int data) {
+    if (isEmpty()) {
+      System.out.println("list is empty");
+      return -1;
+    }
+    int indexPtr = -1;
+    Node temp = head;
+    for (int i = 0; temp != null; i++) {
+      if (temp.data == data) {
+        indexPtr = i;
+      }
+      temp = temp.next;
+    }
+    return indexPtr;
   }
 
   // Basic and Operation
@@ -218,14 +254,80 @@ public class LinkedList {
     return result;
   }
 
-  public static void main(String[] args) {
-    LinkedList list = new LinkedList();
-    for (int i = 0; i < 5; i++) {
-      list.add(i);
+  // Advanced Operations
+  public boolean contains(int data) {
+    int position = 0;
+    if (isEmpty()) {
+      System.out.println("List is empty");
+      return false;
+    }
+    Node temp = head;
+    while (temp != null) {
+      if (temp.data == data) {
+        System.out.println("The list contains the value " + data + " at the position " + position);
+        return true;
+      }
+      temp = temp.next;
+      position++;
+    }
+    System.out.println("The list does not contain the specificed data");
+    return false;
+  }
+
+  public LinkedList reverse() {
+    LinkedList result = new LinkedList();
+    if (isEmpty()) {
+      System.out.println("List is empty");
+      return result;
+    }
+    Node temp = head;
+    while (temp != null) {
+      result.addToFirst(temp.data);
+      temp = temp.next;
+    }
+    return result;
+  }
+
+  public LinkedList clone() {
+    LinkedList result = new LinkedList();
+    if (isEmpty()) {
+      System.out.println("List is empty");
+      return result;
     }
 
-    list.traveralPrintList();
-    list.get(4);
+    Node temp = head;
+    while (temp != null) {
+      result.add(temp.data);
+      temp = temp.next;
+    }
+    return result;
+  }
 
+  // Conversion and Data Manipulation
+  public int[] toArray() {
+    if (isEmpty()) {
+      System.out.println("List is empty");
+      return new int[] {};
+    }
+    int[] result = new int[size];
+    Node temp = head;
+    for (int i = 0; temp != null; i++) {
+      result[i] = temp.data;
+      temp = temp.next;
+    }
+    return result;
+  }
+
+  // SORTING SUPER ADVANCED
+
+  public static void main(String[] args) {
+    Random rand = new Random();
+    LinkedList list = new LinkedList();
+    for (int i = 0; i < 5; i++) {
+      list.add(rand.nextInt(10));
+    }
+    list.traveralPrintList();
+    LinkedList newList = list.reverse();
+    newList.traveralPrintList();
   }
 }
