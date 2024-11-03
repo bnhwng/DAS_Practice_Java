@@ -1,3 +1,4 @@
+package algo;
 public class fib {
   public fib() {
   }
