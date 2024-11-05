@@ -20,6 +20,19 @@ public class DoublyLinkedList {
     return this.size;
   }  
 
+  public void updateSize(){
+    if(isEmpty()){
+      return;
+    }
+    int newSize=0;
+    Node temp=head;
+    while(temp!=null){
+      temp=temp.next;
+      newSize++;
+    }
+    this.size=newSize;
+  }
+
   /**
    * return boolean of team is empty.
    */
@@ -161,24 +174,86 @@ public class DoublyLinkedList {
       }
     }
    
+    public void removeAllValueOf(int x){
+      if(isEmpty()){
+        System.out.println("List is empty, invalid call");
+        return;
+      }
+
+    }
    /**
     * Search and Retrieval
     */
 
+    /**
+     * Pre-condition: list must not be empty
+     * Post-condition return boolean value if the target exists in the list or not
+     * @param target
+     * @return boolean target==exist in list
+     */
     public boolean search(int target){
+      if(isEmpty()){
+        System.out.println("list is empty");
+        return false;
+      }
+      Node temp=head;
+      while(temp!=null){
+        if(temp.data==target){
+          System.out.println("Value exists in the list");
+          return true;
+        }
+        temp=temp.next;
+      }
+      System.out.println("Value does not exist in the list");
       return false;
     }
 
     public int indexOf(int data){
-      return 1;
+      if(isEmpty()){
+        System.out.println("list is empty");
+        return -1;
+      }
+      Node temp=head;
+      for(int i=0; temp!=null; i++){
+        if(temp.data==data){
+          return i;
+        }
+        temp=temp.next;
+      }
+      System.out.println("value does not exist");
+      return -1;
     }
 
     public int lastIndexOf(int data){
-      return 1;
+      if(isEmpty()){
+        System.out.println("List is empty, invalid call");
+        return -1;
+      }
+      int result=-1;
+      Node temp=head;
+      for(int i = 0; temp!=null;i++){
+        if(temp.data==data){
+          result=i;
+        }
+        temp=temp.next;
+      }
+      System.out.println("value does not exist");
+      return result;
     }
 
     public Node getNodeAtIndex(int index){
-      return null;
+      if(index<0||index>=size){
+        System.out.println("invalid index");
+        return null;
+      }
+      Node temp=head;
+      int indexPtr=0;
+      while(indexPtr!=index){
+        temp=temp.next;
+        indexPtr++;
+      }
+      System.out.println("Node at index " + index + " has the value of " + temp.data);
+      return temp;
     }
 
     /**
@@ -186,19 +261,46 @@ public class DoublyLinkedList {
      */
 
      public void clear(){
-
+      head=last=null;
+      size=0;
      }
 
      public boolean contains(int data){
-      return false;
+        if(isEmpty()){
+          System.err.println("Empty list invalid call");
+        }
+        Node temp=head;
+        while(temp!=null){
+          if(temp.data==data){
+            return true;
+          }
+        }
+        System.out.println("No value found");
+        return false;
      }
 
      public void reverse(){
+      if(isEmpty()){
+        System.err.println("list empty invalid call");
+        return;
+      }
+      Node temp=head;
+      Node prevPtr=null;
+      while(temp!=null){
+        prevPtr=temp.prev;
+        temp.prev=temp.next;
+        temp.next=prevPtr;
+        temp=temp.prev;
+      }
+      head=prevPtr.prev;
 
      }
 
      public DoublyLinkedList clone(){
       return null;
+     }
+
+     public static void main(String[]args){
      }
 
 
