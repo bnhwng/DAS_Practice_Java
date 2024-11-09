@@ -1,8 +1,6 @@
 package ds.LinkedList;
 
 import java.util.Random;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LinkedList {
   // singly
