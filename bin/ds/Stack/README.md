@@ -1,0 +1,1 @@
+Stack can be used to implement undo mechanism, brower history navigation, expression parsing and evaluation. 

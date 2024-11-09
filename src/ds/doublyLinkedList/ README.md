@@ -45,13 +45,6 @@ Step 3
 
 
 
-
-
-
-
-
-
-
 So quicksort is a three step process.
 Partitioning a pivot point for the entire list
 Sort first-pivot.prev using partition function

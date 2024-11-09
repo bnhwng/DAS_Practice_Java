@@ -354,8 +354,20 @@ public class DoublyLinkedList {
     }
 }
 
+@Override
+public String toString() {
+  // TODO Auto-generated method stub
+  StringBuilder sb = new StringBuilder();
+  Node temp = head;
+  while(temp!=null){
+    sb.append(temp.data).append(" ");
+    temp=temp.next;
+  }
+  return sb.toString();
+}
+
   public static void main(String[] args) {
-    
+
   }
 
 }
